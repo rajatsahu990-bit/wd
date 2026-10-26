@@ -922,3 +922,105 @@ footer p {
         margin: 0 auto 20px;
     }
 }
+
+
+/* =========================================================
+   CSS ASSIGNMENT REQUIREMENTS (SCREENSHOT ITEMS 8 AND 9)
+   - Different fonts and selector-based styles
+   - Background images for the page and individual elements
+   - Control image repetition
+   - Link states: link, visited, active, hover
+   ========================================================= */
+
+/* Different font, colour and text styles using selectors */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6fb;
+    background-image: url("images/page-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1, h2 {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+h3, nav, button {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Background images for individual page elements.
+   Place element-background.jpg inside the images folder. */
+.welcome,
+.login-box,
+.register-box,
+.registration-box,
+.cart-panel,
+.empty-cart {
+    background-image: url("images/element-background.jpg");
+    background-repeat: repeat;
+    background-position: top left;
+    background-color: #ffffff;
+}
+
+/* Example of controlling repetition for a single element */
+.sidebar {
+    background-image: url("images/sidebar-background.jpg");
+    background-repeat: repeat-y;
+    background-position: top left;
+    background-color: #312e81;
+}
+
+/* Link styles required by the assignment.
+   Keep these states in this order: link, visited, hover, active. */
+a:link {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #6b21a8;
+}
+
+a:hover {
+    color: #db2777;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #dc2626;
+}
+
+/* Keep navigation and sidebar links readable on dark backgrounds */
+nav a:link,
+nav a:visited,
+.sidebar a:link,
+.sidebar a:visited {
+    color: #ffffff;
+}
+
+nav a:hover,
+.sidebar a:hover {
+    color: #312e81;
+}
+
+nav a:active,
+.sidebar a:active {
+    color: #dc2626;
+}
+
+/* Make the background images less intrusive on small screens */
+@media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+        background-size: auto 100%;
+    }
+}
