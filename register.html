@@ -70,8 +70,9 @@
                         <input
                             type="email"
                             id="email"
-                            placeholder="Email"
+                            placeholder="Email (name@domain.com)"
                             required
+                            title="Enter a valid email address, such as name@example.com."
                         >
                     </div>
 
@@ -80,10 +81,13 @@
                         <input
                             type="tel"
                             id="mobile"
-                            placeholder="Mobile No."
+                            placeholder="Mobile No. (10 digits)"
                             pattern="[0-9]{10}"
+                            minlength="10"
                             maxlength="10"
+                            inputmode="numeric"
                             required
+                            title="Mobile number must contain exactly 10 digits."
                         >
                     </div>
 
@@ -140,18 +144,18 @@
 
                         <select id="month" required>
                             <option value="">Month</option>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
                         </select>
 
                         <select id="year" required>
@@ -220,7 +224,7 @@
         <p>Roll no. 2501920110293</p>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript Validation -->
     <script>
 
         // Create Days
@@ -250,6 +254,8 @@
                 event.preventDefault();
 
                 const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const mobile = document.getElementById("mobile").value;
                 const password = document.getElementById("password").value;
                 const confirmPassword =
                     document.getElementById("confirmPassword").value;
@@ -262,17 +268,36 @@
                 error.style.display = "none";
 
                 // Name Validation
-                const namePattern = /^[A-Za-z ]+$/;
+                const namePattern = /^[A-Za-z ]{6,}$/;
 
-                if (name.length < 6) {
-                    alert("Name must be at least 6 characters long.");
+                if (!namePattern.test(name)) {
+                    alert(
+                        "Name must contain only alphabets and spaces, with at least 6 characters."
+                    );
                     document.getElementById("name").focus();
                     return;
                 }
 
-                if (!namePattern.test(name)) {
-                    alert("Name must contain only alphabets and spaces.");
-                    document.getElementById("name").focus();
+                // Email Validation
+                // Format: name@domain.com
+                const emailPattern =
+                    /^[A-Za-z0-9]+([._%+-][A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+
+                if (!emailPattern.test(email)) {
+                    alert(
+                        "Please enter a valid email address in the format name@domain.com."
+                    );
+                    document.getElementById("email").focus();
+                    return;
+                }
+
+                // Mobile Number Validation
+                // Exactly 10 digits, no letters or special characters
+                const mobilePattern = /^[0-9]{10}$/;
+
+                if (!mobilePattern.test(mobile)) {
+                    alert("Mobile number must contain exactly 10 digits.");
+                    document.getElementById("mobile").focus();
                     return;
                 }
 
